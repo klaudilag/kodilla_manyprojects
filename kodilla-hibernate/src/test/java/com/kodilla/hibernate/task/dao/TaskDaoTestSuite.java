@@ -52,8 +52,8 @@ public class TaskDaoTestSuite {
 
         Assertions.assertEquals(1, readTasks.size());
         //CleanUp
-        //int id = readTasks.get(0).getId();
-        //taskDao.deleteById(id);
+        int id = readTasks.get(0).getId();
+        taskDao.deleteById(id);
     }
     @Test
     void testTaskDaoSaveWithFinancialDetails() {
@@ -69,6 +69,6 @@ public class TaskDaoTestSuite {
         assertNotEquals(0, id);
 
         //CleanUp
-        //taskDao.deleteById(id);
+        taskDao.deleteById(id);
     }
 }
