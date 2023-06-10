@@ -34,11 +34,11 @@ public class InvoiceDaoTestSuite {
 
         invoiceDao.save(invoice);
         int invoiceId = invoice.getId();
-
-        Assertions.assertNotEquals(0, invoiceId);
-
-        invoiceDao.deleteById(invoiceId);
-
+        try {
+            Assertions.assertNotEquals(0, invoiceId);
+        } finally {
+            invoiceDao.deleteById(invoiceId);
+        }
 
     }
 }
