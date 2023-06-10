@@ -5,7 +5,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@NamedNativeQuery(
+        name = "Company.findByFirstThreeLetters",
+        query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME LIKE :LETTERS"
+)
 @Entity
 @Table(name = "COMPANIES")
 public class Company {

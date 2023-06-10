@@ -5,7 +5,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@NamedQuery(
+        name = "Employee.findByName",
+        query = "FROM Employee where firstname = :FIRSTNAME"
+)
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {
