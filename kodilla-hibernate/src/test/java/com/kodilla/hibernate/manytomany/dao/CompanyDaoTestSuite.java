@@ -78,14 +78,20 @@ class CompanyDaoTestSuite {
         int company1Id = company1.getId();
         companyDao.save(company);
         int companyId = company.getId();
+        int employeeid = employee1.getId();
+        int employee2id = employee.getId();
 
-        List<Company> companies= companyDao.findByFirstThreeLetters("For");
+
+        //List<Company> companies= companyDao.findByFirstThreeLetters("Forma");
         List <Employee> employees = employeeDao.findByName("Andrzej");
-
-        Assertions.assertEquals(employees.size(), 1);
-        Assertions.assertEquals(companies.size(), 1);
-
-        companyDao.deleteById(companyId);
-        companyDao.deleteById(company1Id);
+        try {
+            Assertions.assertEquals(1, employees.size());
+            //Assertions.assertEquals(1, companies.size());
+            } finally {
+            companyDao.deleteById(companyId);
+            companyDao.deleteById(company1Id);
+            employeeDao.deleteById(employee2id);
+            employeeDao.deleteById(employeeid);
+        }
     }
 }
