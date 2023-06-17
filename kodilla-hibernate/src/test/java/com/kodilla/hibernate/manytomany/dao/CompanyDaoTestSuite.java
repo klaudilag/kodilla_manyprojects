@@ -65,7 +65,7 @@ class CompanyDaoTestSuite {
         }
     }
     @Test
-    void testNewMethodsOfQueries(){
+    void testFindingByName(){
         Employee employee = new Employee("Andrzej", "Gołowa");
         Employee employee1 = new Employee("Wiesław", "Gołowa");
         Company company = new Company("Forma");
@@ -81,17 +81,29 @@ class CompanyDaoTestSuite {
         int employeeid = employee1.getId();
         int employee2id = employee.getId();
 
-
-        //List<Company> companies= companyDao.findByFirstThreeLetters("Forma");
         List <Employee> employees = employeeDao.findByName("Andrzej");
+        Assertions.assertEquals(1, employees.size());
         try {
-            Assertions.assertEquals(1, employees.size());
-            //Assertions.assertEquals(1, companies.size());
-            } finally {
             companyDao.deleteById(companyId);
             companyDao.deleteById(company1Id);
             employeeDao.deleteById(employee2id);
             employeeDao.deleteById(employeeid);
+            } catch(Exception e){
+            System.out.println(e.getMessage());
         }
+    }
+    @Test
+    void findByThreeLetters(){
+        Company company = new Company("Formia");
+        companyDao.save(company);
+        int companyid = company.getId();
+        List<Company> companiesList = companyDao.findByFirstThreeLetters("For");
+        Assertions.assertEquals(1,companiesList.size());
+        try{
+            companyDao.deleteById(companyid);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
     }
 }
